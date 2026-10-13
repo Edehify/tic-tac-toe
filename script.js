@@ -80,7 +80,7 @@ function makeMove(position){
         } else if (checkDraw()) {
             console.log("It's a draw!");
             isGameOver = true;
-        } else if (!checkWin() && !checkDraw()){
+        } else {
             switchPlayer();
         }
     } else {
