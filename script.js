@@ -99,3 +99,15 @@ function makeMove(position){
             
         };
 }) ();
+
+gameController.resetGame();
+gameController.makeMove(0); // Player 1 places "X" at position 0
+gameController.makeMove(1); // Player 2 places "O" at position 1
+gameController.makeMove(2); // Player 1 places "X" at position 2    
+gameController.makeMove(3); // Player 2 places "O" at position 3
+gameController.makeMove(4); // Player 1 places "X" at position 4
+gameController.makeMove(5); // Player 2 places "O" at position 5
+gameController.makeMove(6); // Player 1 places "X" at position 6
+gameController.makeMove(7); // Player 2 places "O" at position 7
+gameController.makeMove(8); // Player 1 places "X" at position 8
+gameController.makeMove(9); // Invalid move, cell is already occupied
