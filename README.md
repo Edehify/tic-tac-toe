@@ -48,15 +48,37 @@ For more information about this project and my learning journey, please visit:
 
 ## Project Structure
 
+tic-tac-toe/
+├── index.html       # HTML structure for the game
+├── style.css        # Game board layout and application styles
+├── script.js        # Game logic, player management, and DOM interactions
+└── README.md        # Project description, features, and documentation
+```
+
 
 
 ---
 
 ## Future Improvements
 
+
+The following improvements are planned for future versions of this project:
+
+* Improve game logic and ensure moves cannot be made after the game ends.
+* Display the current player's turn, winner, or draw status on the user interface.
+* Highlight the winning combination when a player wins.
+* Improve the user interface and make the game responsive across different screen sizes.
+* Add player name selection.
+* Implement score tracking across multiple rounds.
+* Add an undo move feature.
+* Develop a computer opponent with different difficulty levels.
+* Write automated tests for the game logic.
+* Deploy the game online so it can be played in a web browser.
+
 ---
 
 ## Acknowledgements
+This project was completed as part of the curriculum from The Odin Project.
 
 
 
@@ -69,11 +91,7 @@ Edeh Maligue Ifeanyi
 
 ## Live Demo
 
-👉 [Click here to view the live demo](coming soon )
+👉 [Click here to view the live demo](https://edehify.github.io/tic-tac-toe/)
 
----
 
-## Screenshot
-
-![Project Screenshot](coming soon)
 
