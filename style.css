@@ -56,3 +56,9 @@ button {
     gap: 5px;
     margin-bottom: 20px;
 }
+
+#game-status {
+    font-size: 1.2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
