@@ -34,7 +34,12 @@ For more information about this project and my learning journey, please visit:
 
 ## What I Learned
 
- 
+* I learned how to break a JavaScript project into smaller modules using IIFEs, so the game board, game logic, and display code each have a clear responsibility.
+* I practiced keeping the board and game state in JavaScript, then updating the page to reflect that state instead of treating the DOM as the source of truth.
+* I learned how to use arrays to represent the board and check winning combinations for rows, columns, and diagonals.
+* I practiced handling user interactions with event listeners, validating moves, alternating between players, and preventing play after a win or draw.
+* I learned how to reset the game by restoring the board, current player, and game-over state.
+* I gained experience connecting JavaScript to HTML elements and styling the interface with CSS.
 
 
 ---
@@ -71,5 +76,4 @@ Edeh Maligue Ifeanyi
 ## Screenshot
 
 ![Project Screenshot](coming soon)
-
 
