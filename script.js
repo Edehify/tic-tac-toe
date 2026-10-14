@@ -69,23 +69,34 @@ const gameController = (() => {
 }
 // Function to make a move on the game board
 function makeMove(position){
+    // Check if the game is already over
     if (isGameOver) {
-        return;
-    }
+            return  "reset";
+        }
+        if (position < 0 || position > 8) {
+            return "Error";
+    }  
+    // Check if the selected position on the board is empty 
     if (gameBoard.getBoard()[position] === "") {
+        // Place the current player's marker on the board at the specified position
         gameBoard.placeMarker(position, currentPlayer.marker);
+        // Check if the current player has won or if the game is a draw
         if (checkWin()) {
-            console.log(`${currentPlayer.name} wins! ${currentPlayer.marker}`);
             isGameOver = true;
+            return "win";
+            // If the game is not over, switch to the other player and continue playing
         } else if (checkDraw()) {
-            console.log("It's a draw!");
             isGameOver = true;
-        } else {
+            return "draw";
+
+        } 
+        // If the game is not over, switch to the other player and continue playing
+        else {
             switchPlayer();
+            return "playing";
         }
     } else {
-        console.log("Invalid move! Cell is already occupied.");
-        return;
+        return "invalid";
     }
     
 }
@@ -96,18 +107,67 @@ function makeMove(position){
                 isGameOver = false;
             },
             makeMove,
+            getCurrentPlayer: () => currentPlayer,
             
         };
 }) ();
 
-gameController.resetGame();
-gameController.makeMove(0); // Player 1 places "X" at position 0
-gameController.makeMove(1); // Player 2 places "O" at position 1
-gameController.makeMove(2); // Player 1 places "X" at position 2    
-gameController.makeMove(3); // Player 2 places "O" at position 3
-gameController.makeMove(4); // Player 1 places "X" at position 4
-gameController.makeMove(5); // Player 2 places "O" at position 5
-gameController.makeMove(6); // Player 1 places "X" at position 6
-gameController.makeMove(7); // Player 2 places "O" at position 7
-gameController.makeMove(8); // Player 1 places "X" at position 8
-gameController.makeMove(9); // Invalid move, cell is already occupied
+// Create a display controller module using an IIFE (Immediately Invoked Function Expression)
+const displayController =(() => {
+    // Get references to the DOM elements for the cells, game status display, and reset button
+    const cells = document.querySelectorAll(".cell");
+    const gameStatus = document.getElementById("game-status");
+    const resetButton = document.getElementById("reset-button");
+    // Add an event listener to the reset button to reset the game when clicked
+    resetButton.addEventListener("click", () => {
+        gameController.resetGame();
+        renderBoard();
+        updateGameStatus("playing");
+    });
+    
+
+        // Function to render the game board in the DOM
+        function renderBoard() {
+            // Get the current state of the game board from the gameBoard module
+            const board = gameBoard.getBoard();
+            
+            cells.forEach((cell, index) => {
+                cell.textContent = board[index];
+            })
+
+        }
+        // Function to update the game status display based on the current game state
+        cells.forEach((cell) => {
+            cell.addEventListener("click", () => {
+                const position = parseInt(cell.dataset.index);
+                const result = gameController.makeMove(position);
+                renderBoard();
+                updateGameStatus(result);
+            } ) 
+    
+         });
+         // Initialize the game status display to show the current player's turn
+         updateGameStatus("playing");
+
+            // Function to update the game status display based on the current game state
+            function updateGameStatus(pram) {
+                if (pram === "win") {
+                    gameStatus.textContent = `${gameController.getCurrentPlayer().name} Wins!`
+                }
+                if(pram === "draw") {
+                    gameStatus.textContent = "It is a draw"
+                }
+                if(pram === "invalid") {
+                    gameStatus.textContent = "Invalid move! Cell already occupied."
+                }
+                if(pram === "playing") {
+                    gameStatus.textContent = `${gameController.getCurrentPlayer().name}'s turn (${gameController.getCurrentPlayer().marker})`;
+                }
+                if(pram === "reset") {
+                    gameStatus.textContent = "Game over. Please reset the game to play again.";
+                }
+                if(pram === "Error") {
+                    gameStatus.textContent = "Invalid move! Position must be between 0 and 8.";
+                }
+            }        
+}) ();
